@@ -38,7 +38,7 @@ L-out and L-in are connected to the relay, and are what is actually switched.
 
 N-in and N-out are connected through with a 0.001 Ohm resistor, which is required for current measurement using the BL0942.
 
-> [!INFO]
+> [!TIP]
 > Connecting only N-in will work, but the power monitor will not function.
 
 
