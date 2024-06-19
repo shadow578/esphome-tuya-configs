@@ -2,10 +2,10 @@
 # "AUBESS Tuya WiFi Mini Smart Switch with Energy Monitor 16A 2-way control"
 
 Markings:
-> Name: Power Monitor Switch
-> Wireless Type: WiFi2.4G
-> Input: AC 100-240V 60/60Hz 16A Max
-> Output: AC 100-240V 50/60Hz 16A Max
+> Name: Power Monitor Switch  
+> Wireless Type: WiFi2.4G  
+> Input: AC 100-240V 60/60Hz 16A Max  
+> Output: AC 100-240V 50/60Hz 16A Max  
 
 ## Images
 
