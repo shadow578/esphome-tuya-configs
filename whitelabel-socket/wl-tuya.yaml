@@ -14,6 +14,11 @@ substitutions:
   ps_cf:        P0
   ps_cf1:       P12
 
+  # calibration, see https://esphome.io/components/sensor/hlw8012.html#calibration
+  voltage_divider: "1526.08"
+  current_resistor: "0.00181"
+  current_multiply: "0.88588"
+
 esphome:
   name: ${device_name}
   friendly_name: "Whitelabel Tuya"
@@ -29,7 +34,7 @@ rtl87xx:
 
   # TODO: BL0937 does not work in current stable, see https://github.com/libretiny-eu/libretiny/issues/155
   framework:
-    version: dev
+    version: 1.6.0
 
 logger:
 api:
@@ -58,7 +63,6 @@ web_server:
 #############
 sensor:
   # BL0942
-  # TODO: calibration missing
   - platform: hlw8012
     model: BL0937
     sel_pin: 
@@ -70,11 +74,15 @@ sensor:
       name: "${device_name}.voltage"
     current:
       name: "${device_name}.current"
+      filters: 
+        - multiply: ${current_multiply}
     power:
       name: "${device_name}.power"
     energy:
       name: "${device_name}.energy"
     update_interval: 1s # TODO reduce to 60s if you face issues
+    voltage_divider: ${voltage_divider}
+    current_resistor: ${current_resistor}
 
   # WiFi signal strength
   - platform: wifi_signal
@@ -87,6 +95,11 @@ sensor:
     source_id: wifi_signal_db
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+
+text_sensor:
+  - platform: libretiny
+    version:
+      name: LibreTiny Version
 
 binary_sensor:
   # button on the PCB
